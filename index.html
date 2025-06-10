@@ -20,6 +20,192 @@
             color: #333;
         }
 
+        /* Modal Styles - MÁS LLAMATIVO */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 0, 150, 0.8), rgba(0, 204, 255, 0.8));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            animation: modalBackgroundPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes modalBackgroundPulse {
+            0%, 100% { background: linear-gradient(45deg, rgba(255, 0, 150, 0.8), rgba(0, 204, 255, 0.8)); }
+            50% { background: linear-gradient(45deg, rgba(255, 100, 0, 0.8), rgba(150, 0, 255, 0.8)); }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease infinite;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border: 3px solid #fff;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+            animation: modalBounce 0.6s ease, gradientShift 4s ease infinite;
+        }
+
+        @keyframes modalBounce {
+            0% { transform: scale(0.3) rotate(-10deg); }
+            50% { transform: scale(1.05) rotate(2deg); }
+            70% { transform: scale(0.95) rotate(-1deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #fff;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px #fff; }
+            to { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px #fff, 0 0 30px #fff; }
+        }
+
+        .modal-subtitle {
+            color: #fff;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Floating Register Button - SÚPER LLAMATIVO */
+        .floating-register-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite, floatingPulse 2s ease-in-out infinite;
+            color: white;
+            border: none;
+            padding: 20px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 900;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4), 0 0 0 3px #fff;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border: 3px solid #fff;
+        }
+
+        @keyframes floatingPulse {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4), 0 0 0 3px #fff;
+            }
+            50% { 
+                transform: translateY(-10px) scale(1.05);
+                box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6), 0 0 0 5px #fff, 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .floating-register-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.6), 0 0 0 5px #fff, 0 0 30px rgba(255, 255, 255, 0.8);
+            animation: gradientShift 1s ease infinite, floatingPulse 1s ease-in-out infinite;
+        }
+
+        .floating-register-btn.show {
+            display: flex;
+            animation: bounceInSuper 1s ease, gradientShift 3s ease infinite, floatingPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceInSuper {
+            0% { 
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            50% { 
+                transform: scale(1.3) rotate(-90deg);
+                opacity: 0.8;
+            }
+            75% { 
+                transform: scale(0.9) rotate(-45deg);
+                opacity: 0.9;
+            }
+            100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Efecto de ondas alrededor del botón */
+        .floating-register-btn::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 300% 300%;
+            z-index: -1;
+            animation: gradientShift 3s ease infinite, rippleEffect 3s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
         /* Top Bar */
         .top-bar {
             background: white;
@@ -584,21 +770,30 @@
             font-family: inherit;
         }
 
+        /* Submit Button */
         .submit-btn {
-            background: #333;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            animation: gradientShift 2s ease infinite;
             color: white;
             border: none;
-            padding: 16px;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 4px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 900;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         .submit-btn:hover {
-            background: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: gradientShift 1s ease infinite;
         }
 
         .form-disclaimer {
@@ -768,7 +963,7 @@
         .chat-btn {
             position: fixed;
             bottom: 16px;
-            right: 16px;
+            left: 16px;
             width: 64px;
             height: 64px;
             background: #25d366;
@@ -780,6 +975,10 @@
             font-weight: 500;
             z-index: 1000;
             transition: transform 0.2s;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .chat-btn:hover {
@@ -837,6 +1036,18 @@
             .country-select {
                 width: 100%;
             }
+
+            .modal-content {
+                padding: 24px;
+                margin: 16px;
+            }
+
+            .floating-register-btn {
+                bottom: 16px;
+                right: 16px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -883,6 +1094,55 @@
 </head>
 
 <body>
+    <!-- Modal de Registro -->
+    <div class="modal-overlay" id="registrationModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title">¡Obtén 50% de descuento!</h2>
+            <p class="modal-subtitle">Regístrate ahora y aprovecha esta oferta especial</p>
+
+            <form class="registration-form" onsubmit="submitModalRegistration(event)">
+                <input type="text" id="modal-nombres" class="form-input" placeholder="Nombre y Apellido" required>
+
+                <div class="phone-input-group">
+                    <select class="country-select" id="modal-country">
+                        <option value="+591">🇧🇴 +591</option>
+                        <option value="+54">🇦🇷 +54</option>
+                        <option value="+56">🇨🇱 +56</option>
+                        <option value="+57">🇨🇴 +57</option>
+                    </select>
+                    <input type="tel" id="modal-telefono" class="phone-input" placeholder="Teléfono" required>
+                </div>
+
+                <select class="city-select" required id="modal-ciudad">
+                    <option value="">Ciudad</option>
+                    <option value="la-paz">La Paz</option>
+                    <option value="santa-cruz">Santa Cruz</option>
+                    <option value="cochabamba">Cochabamba</option>
+                    <option value="sucre">Sucre</option>
+                    <option value="potosi">Potosí</option>
+                    <option value="tarija">Tarija</option>
+                    <option value="oruro">Oruro</option>
+                    <option value="beni">Beni</option>
+                    <option value="pando">Pando</option>
+                </select>
+
+                <textarea class="form-textarea" id="modal-comentario" placeholder="Comentario (opcional)" rows="3"></textarea>
+
+                <button type="submit" class="submit-btn">¡OBTENER DESCUENTO!</button>
+            </form>
+
+            <p class="form-disclaimer">
+                Al registrarte, aceptas recibir mensajes de marketing. Un operador se pondrá en contacto contigo pronto.
+            </p>
+        </div>
+    </div>
+
+    <!-- Botón Flotante de Registro -->
+    <button class="floating-register-btn" id="floatingRegisterBtn" onclick="showModal()">
+        📋 REGISTRARSE
+    </button>
+
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="social-links">
@@ -916,60 +1176,6 @@
         </div>
     </div>
 
-    <!-- Navigation -->
-    <!-- <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">VITAFORCE BOLIVIA</a>
-
-            <ul class="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <div class="language-selector" style="display: none;">
-                    <button class="language-btn" onclick="toggleLanguageDropdown()">
-                        Español
-                        <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24">
-                            <path d="M7 10l5 5 5-5z" />
-                        </svg>
-                    </button>
-                </div>
-
-                <button class="nav-btn" aria-label="Buscar">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="m21 21-4.35-4.35" />
-                    </svg>
-                </button>
-
-                <button class="nav-btn" aria-label="Usuario">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                    </svg>
-                </button>
-
-                <button class="nav-btn" aria-label="Carrito">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <path d="M16 10a4 4 0 0 1-8 0" />
-                    </svg>
-                </button>
-
-                <button class="mobile-menu-btn" aria-label="Menú">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav> -->
-
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-container">
@@ -983,13 +1189,13 @@
         <div class="product-container">
             <div class="product-image">
                 <img src="/img/El_texto_del_parrafo_1200_x_600_px_1200_x_600_px_1200_x_1200_px_1200_x_1800_px_1.svg"
-                    alt="Hombre sonriente con producto Vitaforce">
+                    alt="Hombre sonriente con producto Vitaforce" style="width: 100%; height:100% ;" alt="Hombre sonriente con producto Vitaforce">
             </div>
             <div class="product-content">
                 <h3>¡Potencia la vitalidad masculina y mejora tu salud prostática!</h3>
                 <p>Vitaforce es tu aliado 100% natural para una próstata saludable, micción sin molestias y un desempeño
                     sexual pleno. Nuestra fórmula americana con 9 potentes ingredientes naturales.</p>
-                <button class="cta-btn" onClick="scrollToRegistration()">Conocer más</button>
+                <button class="cta-btn" onclick="scrollToRegistration()">Conocer más</button>
             </div>
         </div>
     </section>
@@ -1005,7 +1211,7 @@
                 testosterona, claves para lograr erecciones más fuertes y duraderas. Una fórmula diseñada para el
                 hombre, que quiere vivir con fuerza, confianza y vitalidad a cualquier edad.
             </p>
-            <button class="register-btn" onclick="scrollToRegistration()">REGÍSTRATE AQUÍ</button>
+            <button class="register-btn" onclick="showModal()">REGÍSTRATE AQUÍ</button>
         </div>
     </section>
 
@@ -1068,7 +1274,6 @@
                         favorece la masa muscular, la recuperación post ejercicio, la salud mental, las funciones
                         cognitivas y tiene propiedades antioxidantes.
                     </p>
-                    <!-- <a href="#" class="more-info-btn">MÁS INFO</a> -->
                 </div>
             </div>
 
@@ -1083,7 +1288,6 @@
                         <strong>concentración</strong>. Su acción adaptógena reduce el <strong>estrés</strong> y mejora
                         el <strong>bienestar general</strong>.
                     </p>
-                    <!-- <a href="#" class="more-info-btn">MÁS INFO</a> -->
                 </div>
                 <div class="ingredient-image">
                     <img src="/img/El_texto_del_parrafo_6.webp"
@@ -1105,7 +1309,6 @@
                         contribuye a la <strong>fertilidad masculina</strong> y potencia la <strong>vitalidad
                             sexual</strong>, favoreciendo el bienestar general y la salud reproductiva.
                     </p>
-                    <!-- <a href="#" class="more-info-btn">MÁS INFO</a> -->
                 </div>
             </div>
 
@@ -1129,7 +1332,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 48px;">
-                <button class="register-btn" onClick="scrollToRegistration()">MÁS INFO</button>
+                <button class="register-btn" onclick="showModal()">MÁS INFO</button>
             </div>
         </div>
     </section>
@@ -1138,8 +1341,8 @@
     <section class="usage-section">
         <div class="usage-container">
             <div class="usage-image">
-                <img src=/img/Diseno_sin_titulo (1).svg"
-                    alt="Producto Vitaforce - Frasco y caja">
+                <img src="/img/Diseno_sin_titulo (1).svg"
+                    alt="Producto Vitaforce - Frasco  caja">
             </div>
             <div class="usage-instructions">
                 <div class="usage-item">
@@ -1318,9 +1521,99 @@
     </section>
 
     <!-- Chat Button -->
-    <button class="chat-btn" onclick="openChat()">Chat</button>
+    <button class="chat-btn" onclick="openChat()">💬</button>
 
     <script>
+        // Variables globales
+        let modalShown = false;
+
+        // Mostrar modal al cargar la página
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (!modalShown) {
+                    showModal();
+                }
+            }, 2000); // Espera 2 segundos después de cargar la página
+        });
+
+        // Funciones del modal
+        function showModal() {
+            const modal = document.getElementById('registrationModal');
+            modal.classList.add('show');
+            modalShown = true;
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('registrationModal');
+            const floatingBtn = document.getElementById('floatingRegisterBtn');
+            
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restaurar scroll del body
+            
+            // Mostrar botón flotante después de cerrar el modal
+            setTimeout(function() {
+                floatingBtn.classList.add('show');
+            }, 500);
+        }
+
+        // Cerrar modal al hacer clic fuera de él
+        document.getElementById('registrationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Envío del formulario del modal
+        function submitModalRegistration(event) {
+            event.preventDefault();
+            
+            const nombres = document.getElementById('modal-nombres').value;
+            const telefono = document.getElementById('modal-telefono').value;
+            const ciudad = document.getElementById('modal-ciudad').value;
+            const comentario = document.getElementById('modal-comentario').value;
+
+            try {
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("Allow-Control-Allow-Origin", "*");
+                
+                const raw = JSON.stringify({
+                    "nombres": nombres,
+                    "telefono": telefono,
+                    "ciudad": ciudad,
+                    "comentario": comentario,
+                });
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow",
+                    mode: "no-cors"
+                };
+
+                fetch("https://crm.servisofts.com/http/rest/campana/me_interesa/dd7b2b70-0bd0-4877-bdb1-149f272a30e6", requestOptions)
+                    .then((response) => response.text())
+                    .then((result) => console.log(result))
+                    .catch((error) => console.error(error));
+            } catch (error) {
+                console.error("Error en el envío:", error);
+            }
+
+            alert('¡Gracias por registrarte! Un operador se pondrá en contacto contigo pronto para confirmar tu pedido con 50% de descuento.');
+            event.target.reset();
+            closeModal();
+        }
+
+        // Funciones existentes
         function toggleLanguageDropdown() {
             const dropdown = document.getElementById('languageDropdown');
             dropdown.classList.toggle('show');
@@ -1337,7 +1630,7 @@
         }
 
         function openChat() {
-            alert('¡Hola! ¿En qué podemos ayudarte?');
+            window.open('https://wa.me/59178787878?text=Hola, me interesa conocer más sobre Vitaforce', '_blank');
         }
 
         function scrollToRegistration() {
@@ -1348,36 +1641,39 @@
 
         function submitRegistration(event) {
             event.preventDefault();
-            console.log(event.target.nombres.value);
-            console.log(event.target.ciudad.value);
+            
+            const nombres = document.getElementById('nombres').value;
+            const telefono = document.getElementById('telefono').value;
+            const ciudad = document.getElementById('ciudad').value;
+            const comentario = document.getElementById('comentario').value;
 
-            const nombres = event.target.nombres.value;
-            const telefono = event.target.telefono.value;
-            const ciudad = event.target.ciudad.value;
-            const comentario = event.target.comentario.value;
+            try {
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("Allow-Control-Allow-Origin", "*");
+                
+                const raw = JSON.stringify({
+                    "nombres": nombres,
+                    "telefono": telefono,
+                    "ciudad": ciudad,
+                    "comentario": comentario,
+                });
 
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Allow-Control-Allow-Origin", "*");
-            const raw = JSON.stringify({
-                "nombres": nombres,
-                "telefono": telefono,
-                "ciudad": ciudad,
-                "comentario": comentario,
-            });
+                const requestOptions = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow",
+                    mode: "no-cors"
+                };
 
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow",
-                mode: "no-cors"
-            };
-
-            fetch("https://crm.servisofts.com/http/rest/campana/me_interesa/dd7b2b70-0bd0-4877-bdb1-149f272a30e6", requestOptions)
-                .then((response) => response.text())
-                .then((result) => console.log(result))
-                .catch((error) => console.error(error));
+                fetch("https://crm.servisofts.com/http/rest/campana/me_interesa/dd7b2b70-0bd0-4877-bdb1-149f272a30e6", requestOptions)
+                    .then((response) => response.text())
+                    .then((result) => console.log(result))
+                    .catch((error) => console.error(error));
+            } catch (error) {
+                console.error("Error en el envío:", error);
+            }
 
             alert('¡Gracias por registrarte! Un operador se pondrá en contacto contigo pronto para confirmar tu pedido con 50% de descuento.');
             event.target.reset();
@@ -1405,7 +1701,7 @@
             const languageSelector = document.querySelector('.language-selector');
             const dropdown = document.getElementById('languageDropdown');
 
-            if (!languageSelector.contains(event.target)) {
+            if (languageSelector && !languageSelector.contains(event.target)) {
                 dropdown.classList.remove('show');
             }
         });
